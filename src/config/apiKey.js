@@ -9,7 +9,7 @@ const apiKeyMiddleware = (req, res, next) => {
     } 
     if(clientKey !== serverKey){
         return res.status(403).json({error: 'Chave da API incorreta! Sem autorização'})
-    }
+   }
 
     next(); // Passou, pode continuar!
 };
