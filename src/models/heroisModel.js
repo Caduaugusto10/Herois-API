@@ -15,6 +15,14 @@ const getHerois = async (name) => {
     }
 };
 
+const getHeroiById = async (id) => {
+    const result = await pool.query(`
+        SELECT * FROM herois WHERE id = $1
+    `, [id]);
+
+    return result.rows[0];
+};
+
 const createHeroi = async (name, photo) => {
     const result = await pool.query(`
         INSERT INTO herois (name, photo) 
@@ -48,6 +56,7 @@ const deleteHeroi = async (id) => {
 
 module.exports = { 
     getHerois,
+    getHeroiById,
     createHeroi, 
     updateHeroi, 
     deleteHeroi 

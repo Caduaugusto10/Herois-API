@@ -24,6 +24,9 @@ const getHeroiById = async (req, res) => {
 
 const createHeroi = async (req, res) => {
     const { name, photo } = req.body;
+    if (!name || !photo) {
+        return res.status(400).json({ error: 'Os campos "name" e "photo" são obrigatórios.' });
+    }
     try {
         const newHeroi = await heroisModel.createHeroi(name, photo);
         res.status(201).json(newHeroi);
